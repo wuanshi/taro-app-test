@@ -6,6 +6,7 @@ export default function Index() {
 
   useLoad(() => {
     console.log('Page loaded.')
+    console.log('process.env.APP', process.env.APP);
   })
 
   return (

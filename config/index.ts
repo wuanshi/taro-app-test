@@ -3,6 +3,8 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import devConfig from './dev'
 import prodConfig from './prod'
 
+console.log('process.env.APP config', process.env.APP);
+
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig(async (merge, { command, mode }) => {
   const baseConfig: UserConfigExport = {
@@ -14,6 +16,9 @@ export default defineConfig(async (merge, { command, mode }) => {
       750: 1,
       375: 2,
       828: 1.81 / 2
+    },
+    env: {
+      APP: JSON.stringify(process.env.APP)
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
@@ -46,7 +51,7 @@ export default defineConfig(async (merge, { command, mode }) => {
           }
         },
         cssModules: {
-          enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+          enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
           config: {
             namingPattern: 'module', // 转换模式，取值为 global/module
             generateScopedName: '[name]__[local]___[hash:base64:5]'
